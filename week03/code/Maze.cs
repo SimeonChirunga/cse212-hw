@@ -33,6 +33,17 @@ public class Maze
     public void MoveLeft()
     {
         // FILL IN CODE
+        
+            // Check if current position exists in maze and if left movement is allowed
+            if (_mazeMap.TryGetValue((_currX, _currY), out bool[] directions) && directions[0])
+            {
+                _currX--; // Move left decreases x coordinate
+            }
+            else
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        
     }
 
     /// <summary>
@@ -42,6 +53,14 @@ public class Maze
     public void MoveRight()
     {
         // FILL IN CODE
+        if (_mazeMap.TryGetValue((_currX, _currY), out bool[] directions) && directions[1])
+        {
+            _currX++; // Move right increases x coordinate
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -51,6 +70,14 @@ public class Maze
     public void MoveUp()
     {
         // FILL IN CODE
+        if (_mazeMap.TryGetValue((_currX, _currY), out bool[] directions) && directions[2])
+        {
+            _currY--; // Move up decreases y coordinate (assuming y increases downward)
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -60,6 +87,14 @@ public class Maze
     public void MoveDown()
     {
         // FILL IN CODE
+        if (_mazeMap.TryGetValue((_currX, _currY), out bool[] directions) && directions[3])
+        {
+            _currY++; // Move down increases y coordinate
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
     }
 
     public string GetStatus()
